@@ -22,16 +22,16 @@ public class Robot {
         Integer newX = this.getX(), newY = this.getY();
         switch (this.getDirection()) {
             case EAST:
-                newY = this.getY() + 1;
-                break;
-            case WEST:
-                newY = this.getY() - 1;
-                break;
-            case NORTH:
                 newX = this.getX() + 1;
                 break;
-            case SOUTH:
+            case WEST:
                 newX = this.getX() - 1;
+                break;
+            case NORTH:
+                newY = this.getY() + 1;
+                break;
+            case SOUTH:
+                newY = this.getY() - 1;
                 break;
         }
 //        log.info("after {} {}", newX, newY);

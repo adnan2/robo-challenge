@@ -4,7 +4,6 @@ import com.github.adnan2.robochallenge.config.TableConfig;
 import com.github.adnan2.robochallenge.robot.Robot;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.boot.context.event.ApplicationPreparedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -48,7 +47,7 @@ public class TableTop {
         return false;
     }
 
-    @EventListener(ApplicationPreparedEvent.class)
+
     public void display() {
         int maxLen = 15;
         int padding = 4;
@@ -60,8 +59,8 @@ public class TableTop {
             printForEachColumn((t) -> String.format("+%1$-" + maxLen + "s", "").replace(' ', '-'));
             final int currentRow = r;
             System.out.printf("%1$-" + padding + "s", r);
-            printForEachColumn((i) -> {
-                Robot robot = map[currentRow][i];
+            printForEachColumn((x) -> {
+                Robot robot = map[x][currentRow];
                 return String.format(" %1$-" + maxLen + "s", robot == null ? "" : robot.toString());
             });
         }

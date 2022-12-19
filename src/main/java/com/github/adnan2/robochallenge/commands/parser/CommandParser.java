@@ -31,18 +31,18 @@ public class CommandParser {
                 String trim = command.trim();
                 if (trim.toLowerCase().startsWith(Place.FULL_CMD.toLowerCase()) || trim.toLowerCase().startsWith(Place.SHORT_CMD.toLowerCase())) {
                     try {
-                        String[] split = command.split(" ");
-                        if (split.length > 1) {
-                            String value = split[1];
-                            String[] split2 = value.split(",");
-                            if (split2.length > 2) {
-                                Integer x = Integer.parseInt(split2[0]);
-                                Integer y = Integer.parseInt(split2[1]);
-                                String direction = split2[2];
-
-                                action.accept(new Place(x, y, Direction.valueOf(direction.toUpperCase())));
-                            }
+                        //ignore spaces after the first expected space
+                        String secondPart = trim.substring(trim.indexOf(" ") + 1).replace(" ", "");
+                        String[] split = secondPart.split(",");
+                        if (split.length == 3) {
+                            Integer x = Integer.parseInt(split[0]);
+                            Integer y = Integer.parseInt(split[1]);
+                            String direction = split[2];
+                            action.accept(new Place(x, y, Direction.valueOf(direction.toUpperCase())));
+                        } else {
+                            log.error("Invalid command: {}, ", command);
                         }
+
                     } catch (IllegalArgumentException e1) {
                         log.error(e1.getMessage());
                     }
