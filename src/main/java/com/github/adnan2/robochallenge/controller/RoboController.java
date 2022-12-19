@@ -76,24 +76,24 @@ public class RoboController {
     public void help() {
         String output = "" +
                 "Robot Commands\n" +
-                String.format("> %1$-20s", Place.FULL_CMD + " 1,2,north") + "\tTo Place a Robot at 1,2 facing North\n" +
-                String.format("> %1$-20s", Left.FULL_CMD) + "\tTo change direction of Robot to the left side\n" +
-                String.format("> %1$-20s", Right.FULL_CMD) + "\tTo change direction of Robot to the right side\n" +
-                String.format("> %1$-20s", Move.FULL_CMD) + "\tTo move the robot in its current direction\n" +
-                String.format("> %1$-20s", Report.FULL_CMD) + "\tTo display the position and direction of active robot\n" +
-                String.format("> %1$-20s", Display.FULL_CMD) + "\tTo view tabletop grid with robots and their direction\n" +
+                String.format("> %1$-20s", PlaceCommand.FULL_CMD + " 1,2,north") + "\tTo Place a Robot at 1,2 facing North\n" +
+                String.format("> %1$-20s", LeftCommand.FULL_CMD) + "\tTo change direction of Robot to the left side\n" +
+                String.format("> %1$-20s", RightCommand.FULL_CMD) + "\tTo change direction of Robot to the right side\n" +
+                String.format("> %1$-20s", MoveCommand.FULL_CMD) + "\tTo move the robot in its current direction\n" +
+                String.format("> %1$-20s", ReportCommand.FULL_CMD) + "\tTo display the position and direction of active robot\n" +
+                String.format("> %1$-20s", DisplayCommand.FULL_CMD) + "\tTo view tabletop grid with robots and their direction\n" +
                 String.format("> %1$-20s", RobotCommand.FULL_CMD + " 2") + "\tTo activate a specific robot by its number\n" +
-                String.format("> %1$-20s", Help.FULL_CMD) + "\tTo display help\n" +
+                String.format("> %1$-20s", HelpCommand.FULL_CMD) + "\tTo display help\n" +
                 "------------------------------------------------------\n" +
                 "You can also use shortened commands for above mentioned commands.\n" +
-                String.format("> %1$-20s", Place.SHORT_CMD + " 1,2,north") + "\tTo Place a Robot at 1,2 facing North\n" +
-                String.format("> %1$-20s", Left.SHORT_CMD) + "\tTo change direction of Robot to the left side\n" +
-                String.format("> %1$-20s", Right.SHORT_CMD) + "\tTo change direction of Robot to the right side\n" +
-                String.format("> %1$-20s", Move.SHORT_CMD) + "\tTo move the robot in its current direction\n" +
-                String.format("> %1$-20s", Report.SHORT_CMD) + "\tTo display the position and direction of active robot\n" +
-                String.format("> %1$-20s", Display.SHORT_CMD) + "\tTo view tabletop grid with robots and their direction\n" +
+                String.format("> %1$-20s", PlaceCommand.SHORT_CMD + " 1,2,north") + "\tTo Place a Robot at 1,2 facing North\n" +
+                String.format("> %1$-20s", LeftCommand.SHORT_CMD) + "\tTo change direction of Robot to the left side\n" +
+                String.format("> %1$-20s", RightCommand.SHORT_CMD) + "\tTo change direction of Robot to the right side\n" +
+                String.format("> %1$-20s", MoveCommand.SHORT_CMD) + "\tTo move the robot in its current direction\n" +
+                String.format("> %1$-20s", ReportCommand.SHORT_CMD) + "\tTo display the position and direction of active robot\n" +
+                String.format("> %1$-20s", DisplayCommand.SHORT_CMD) + "\tTo view tabletop grid with robots and their direction\n" +
                 String.format("> %1$-20s", RobotCommand.SHORT_CMD + " 2") + "\tTo activate a specific robot by its number\n" +
-                String.format("> %1$-20s", Help.SHORT_CMD) + "\tTo display help\n" +
+                String.format("> %1$-20s", HelpCommand.SHORT_CMD) + "\tTo display help\n" +
                 "------------------------------------------------------\n" +
                 "Please enter a command below\n";
 

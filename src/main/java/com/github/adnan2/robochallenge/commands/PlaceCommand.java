@@ -6,15 +6,15 @@ import lombok.ToString;
 
 @ToString
 @Data
-public class Place extends Command {
+public class PlaceCommand extends Command {
 
     private Integer x;
     private Integer y;
     private Direction direction;
     public static final String SHORT_CMD = "p";
-    public static final String FULL_CMD = Place.class.getSimpleName().toLowerCase();
+    public static final String FULL_CMD = "place";
 
-    public Place(Integer x, Integer y, Direction direction) {
+    public PlaceCommand(Integer x, Integer y, Direction direction) {
         this.x = x;
         this.y = y;
         this.direction = direction;

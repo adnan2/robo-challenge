@@ -29,20 +29,20 @@ public class Main implements CommandLineRunner {
         roboController.help();
         cmd.startListener(action -> {
 //            log.info("Received Action: " + action);
-            if (action instanceof Place) {
-                Place place = (Place) action;
+            if (action instanceof PlaceCommand) {
+                PlaceCommand place = (PlaceCommand) action;
                 roboController.placeRobot(place.getX(), place.getY(), place.getDirection());
-            } else if (action instanceof Left) {
+            } else if (action instanceof LeftCommand) {
                 roboController.faceLeft();
-            } else if (action instanceof Right) {
+            } else if (action instanceof RightCommand) {
                 roboController.faceRight();
-            } else if (action instanceof Report) {
+            } else if (action instanceof ReportCommand) {
                 roboController.report();
-            } else if (action instanceof Move) {
+            } else if (action instanceof MoveCommand) {
                 roboController.move();
-            } else if (action instanceof Help) {
+            } else if (action instanceof HelpCommand) {
                 roboController.help();
-            } else if (action instanceof Display) {
+            } else if (action instanceof DisplayCommand) {
                 roboController.displayTable();
             }else if (action instanceof RobotCommand) {
                 roboController.activateRobot(((RobotCommand) action).getRobotNumber());
