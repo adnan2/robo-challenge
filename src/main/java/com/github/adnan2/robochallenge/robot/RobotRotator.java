@@ -1,5 +1,8 @@
-package com.github.adnan2.robochallenge.commands;
+package com.github.adnan2.robochallenge.robot;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RobotRotator {
     public Direction rotateLeft(Direction current) {
         //      N
