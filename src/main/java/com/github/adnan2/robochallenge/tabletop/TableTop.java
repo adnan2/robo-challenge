@@ -13,7 +13,7 @@ import java.util.function.Function;
 @Slf4j
 @Component
 public class TableTop {
-    TableConfig config;
+    private TableConfig config;
     private Robot[][] map;
 
     @Autowired
