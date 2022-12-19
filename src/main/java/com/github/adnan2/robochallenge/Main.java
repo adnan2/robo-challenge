@@ -44,6 +44,8 @@ public class Main implements CommandLineRunner {
                 roboController.help();
             } else if (action instanceof Display) {
                 roboController.displayTable();
+            }else if (action instanceof RobotCommand) {
+                roboController.activateRobot(((RobotCommand) action).getRobotNumber());
             }
         });
     }

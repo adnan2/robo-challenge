@@ -1,27 +1,21 @@
 package com.github.adnan2.robochallenge.robot;
 
 import com.github.adnan2.robochallenge.tabletop.TableTop;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter
+@AllArgsConstructor
 public class Robot {
+    private Integer number;
     private String name;
     private RobotRotator rotator;
     private TableTop table;
     private Direction direction;
     private Integer x;
     private Integer y;
-
-    public Robot(String name, Direction direction, RobotRotator rotator, TableTop table, Integer x, Integer y) {
-        this.name = name;
-        this.direction = direction;
-        this.rotator = rotator;
-        this.table = table;
-        this.x = x;
-        this.y = y;
-    }
 
     public void move() {
 //        log.info("before {} {}", x, y);
@@ -75,6 +69,6 @@ public class Robot {
         } else {
             dir = "↓";
         }
-        return String.format("%s %s", name, dir);
+        return String.format("%s %s %s", name, number, dir);
     }
 }

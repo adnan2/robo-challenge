@@ -29,7 +29,7 @@ public class CommandParser {
             try {
                 String command = br.readLine();
                 String trim = command.trim();
-                if (trim.startsWith(Place.FULL_CMD) || trim.startsWith(Place.SHORT_CMD)) {
+                if (trim.toLowerCase().startsWith(Place.FULL_CMD.toLowerCase()) || trim.toLowerCase().startsWith(Place.SHORT_CMD.toLowerCase())) {
                     try {
                         String[] split = command.split(" ");
                         if (split.length > 1) {
@@ -58,6 +58,16 @@ public class CommandParser {
                     action.accept(new Display());
                 } else if (trim.equalsIgnoreCase(Help.FULL_CMD) || trim.equalsIgnoreCase(Help.SHORT_CMD)) {
                     action.accept(new Help());
+                } else if (trim.toLowerCase().startsWith(RobotCommand.FULL_CMD.toLowerCase()) || trim.toLowerCase().startsWith(RobotCommand.SHORT_CMD.toLowerCase())) {
+                    String[] split = trim.split(" ");
+                    try {
+                        if (split.length > 1) {
+                            Integer id = Integer.parseInt(split[1]);
+                            action.accept(new RobotCommand(id));
+                        }
+                    } catch (IllegalArgumentException e) {
+                        log.error(e.getMessage());
+                    }
                 }
 
             } catch (IOException e) {
