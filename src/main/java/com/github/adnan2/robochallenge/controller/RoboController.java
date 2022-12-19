@@ -23,12 +23,8 @@ public class RoboController {
         this.tableTop = tableTop;
     }
 
-    public List<Robot> getRobots() {
-        return robots;
-    }
-
     public void placeRobot(int x, int y, Direction direction) {
-        Robot robot = new Robot("Robot" + this.robots.size() + 1, direction, rotator, tableTop, x, y);
+        Robot robot = new Robot("Robot " + (this.robots.size() + 1), direction, rotator, tableTop, x, y);
 
         if (tableTop.placeRobot(robot, x, y)) {
             robots.add(robot);
@@ -51,12 +47,42 @@ public class RoboController {
     public void move() {
         if (activeRobot != null) {
             activeRobot.move();
+            tableTop.display();
         }
     }
 
     public void report() {
         if (activeRobot != null) {
-            System.out.printf("Output: %d,%d,%s", this.activeRobot.getX(), this.activeRobot.getY(), this.activeRobot.getDirection());
+            System.out.printf("Output: %d,%d,%s\n", this.activeRobot.getX(), this.activeRobot.getY(), this.activeRobot.getDirection());
         }
+    }
+
+    public void displayTable() {
+        tableTop.display();
+    }
+
+    public void help() {
+        String output = "" +
+                "Robot Commands\n" +
+                String.format("> %1$-20s", "place 1,2,north") + "\tTo Place a Robot at 1,2 facing North\n" +
+                String.format("> %1$-20s", "left") + "\tTo change direction of Robot to the left side\n" +
+                String.format("> %1$-20s", "right") + "\tTo change direction of Robot to the right side\n" +
+                String.format("> %1$-20s", "move") + "\tTo move the robot in its current direction\n" +
+                String.format("> %1$-20s", "report") + "\tTo display the position and direction of active robot\n" +
+                String.format("> %1$-20s", "display") + "\tTo view tabletop grid with robots and their direction\n" +
+                String.format("> %1$-20s", "help") + "\tTo display help\n" +
+                "------------------------------------------------------\n" +
+                "You can also use shortened commands for above mentioned commands.\n" +
+                String.format("> %1$-20s", "p 1,2,north") + "\tTo Place a Robot at 1,2 facing North\n" +
+                String.format("> %1$-20s", "l") + "\tTo change direction of Robot to the left side\n" +
+                String.format("> %1$-20s", "r") + "\tTo change direction of Robot to the right side\n" +
+                String.format("> %1$-20s", "m") + "\tTo move the robot in its current direction\n" +
+                String.format("> %1$-20s", "rt") + "\tTo display the position and direction of active robot\n" +
+                String.format("> %1$-20s", "d") + "\tTo view tabletop grid with robots and their direction\n" +
+                String.format("> %1$-20s", "h") + "\tTo display help\n" +
+                "------------------------------------------------------\n" +
+                "Please enter a command below\n";
+
+        System.out.println(output);
     }
 }

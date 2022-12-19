@@ -2,9 +2,9 @@ package com.github.adnan2.robochallenge.robot;
 
 import com.github.adnan2.robochallenge.tabletop.TableTop;
 import lombok.Getter;
-import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
-@ToString
+@Slf4j
 @Getter
 public class Robot {
     private String name;
@@ -24,22 +24,23 @@ public class Robot {
     }
 
     public void move() {
+//        log.info("before {} {}", x, y);
         Integer newX = this.getX(), newY = this.getY();
         switch (this.getDirection()) {
             case EAST:
-                newX = this.getX() + 1;
-                break;
-            case WEST:
-                newX = this.getX() - 1;
-                break;
-            case NORTH:
                 newY = this.getY() + 1;
                 break;
-            case SOUTH:
+            case WEST:
                 newY = this.getY() - 1;
                 break;
+            case NORTH:
+                newX = this.getX() + 1;
+                break;
+            case SOUTH:
+                newX = this.getX() - 1;
+                break;
         }
-
+//        log.info("after {} {}", newX, newY);
         if (table.isPositionWithinLimits(newX, newY) && table.isPositionVacant(newX, newY)) {
             table.placeRobot(this, newX, newY);
             table.leaveSpot(this.x, this.y);
@@ -61,4 +62,19 @@ public class Robot {
         direction = rotator.rotateRight(direction);
     }
 
+
+    @Override
+    public String toString() {
+        String dir = "";
+        if (direction == Direction.EAST) {
+            dir = "→";
+        } else if (direction == Direction.WEST) {
+            dir = "←";
+        } else if (direction == Direction.NORTH) {
+            dir = "↑";
+        } else {
+            dir = "↓";
+        }
+        return String.format("%s %s", name, dir);
+    }
 }

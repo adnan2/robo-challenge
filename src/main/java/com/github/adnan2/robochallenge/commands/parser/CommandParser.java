@@ -28,7 +28,8 @@ public class CommandParser {
             BufferedReader br = new BufferedReader(isr);
             try {
                 String command = br.readLine();
-                if (command.toLowerCase().startsWith("place")) {
+                String trim = command.trim();
+                if (trim.startsWith(Place.FULL_CMD) || trim.startsWith(Place.SHORT_CMD)) {
                     try {
                         String[] split = command.split(" ");
                         if (split.length > 1) {
@@ -45,18 +46,20 @@ public class CommandParser {
                     } catch (IllegalArgumentException e1) {
                         log.error(e1.getMessage());
                     }
-                } else {
-                    String trim = command.trim();
-                    if (trim.equalsIgnoreCase(Left.class.getSimpleName())) {
-                        action.accept(new Left());
-                    } else if (trim.equalsIgnoreCase(Right.class.getSimpleName())) {
-                        action.accept(new Right());
-                    } else if (trim.equalsIgnoreCase(Move.class.getSimpleName())) {
-                        action.accept(new Move());
-                    } else if (trim.equalsIgnoreCase(Report.class.getSimpleName())) {
-                        action.accept(new Report());
-                    }
+                } else if (trim.equalsIgnoreCase(Left.FULL_CMD) || trim.equalsIgnoreCase(Left.SHORT_CMD)) {
+                    action.accept(new Left());
+                } else if (trim.equalsIgnoreCase(Right.FULL_CMD) || trim.equalsIgnoreCase(Right.SHORT_CMD)) {
+                    action.accept(new Right());
+                } else if (trim.equalsIgnoreCase(Move.FULL_CMD) || trim.equalsIgnoreCase(Move.SHORT_CMD)) {
+                    action.accept(new Move());
+                } else if (trim.equalsIgnoreCase(Report.FULL_CMD) || trim.equalsIgnoreCase(Report.SHORT_CMD)) {
+                    action.accept(new Report());
+                } else if (trim.equalsIgnoreCase(Display.FULL_CMD) || trim.equalsIgnoreCase(Display.SHORT_CMD)) {
+                    action.accept(new Display());
+                } else if (trim.equalsIgnoreCase(Help.FULL_CMD) || trim.equalsIgnoreCase(Help.SHORT_CMD)) {
+                    action.accept(new Help());
                 }
+
             } catch (IOException e) {
                 log.error(e.getMessage());
             }

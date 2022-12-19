@@ -4,7 +4,12 @@ import com.github.adnan2.robochallenge.config.TableConfig;
 import com.github.adnan2.robochallenge.robot.Robot;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
+import org.springframework.boot.context.event.ApplicationPreparedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Function;
 
 @Slf4j
 @Component
@@ -43,5 +48,31 @@ public class TableTop {
         return false;
     }
 
+    @EventListener(ApplicationPreparedEvent.class)
+    public void display() {
+        int maxLen = 15;
+        int padding = 4;
 
+        System.out.printf("%1$-" + padding + "s", "");
+        printForEachColumn((t) -> String.format(" %1$-" + maxLen + "s", t));
+        for (int r = config.getRows() - 1; r >= 0; r--) {
+            System.out.printf("%1$-" + padding + "s", "");
+            printForEachColumn((t) -> String.format("+%1$-" + maxLen + "s", "").replace(' ', '-'));
+            final int currentRow = r;
+            System.out.printf("%1$-" + padding + "s", r);
+            printForEachColumn((i) -> {
+                Robot robot = map[currentRow][i];
+                return String.format(" %1$-" + maxLen + "s", robot == null ? "" : robot.toString());
+            });
+        }
+        System.out.printf("%1$-" + padding + "s", "");
+        printForEachColumn((t) -> String.format("+%1$-" + maxLen + "s", "").replace(' ', '-'));
+    }
+
+    private void printForEachColumn(Function<Integer, String> valueFunc) {
+        for (int c = 0; c < config.getColumns(); c++) {
+            System.out.printf(valueFunc.apply(c));
+        }
+        System.out.println();
+    }
 }

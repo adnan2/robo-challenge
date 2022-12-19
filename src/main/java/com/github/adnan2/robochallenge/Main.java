@@ -26,8 +26,9 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String... args) {
         CommandParser cmd = new CommandParser(args);
+        roboController.help();
         cmd.startListener(action -> {
-            System.out.println("Received Action: " + action);
+//            log.info("Received Action: " + action);
             if (action instanceof Place) {
                 Place place = (Place) action;
                 roboController.placeRobot(place.getX(), place.getY(), place.getDirection());
@@ -39,6 +40,10 @@ public class Main implements CommandLineRunner {
                 roboController.report();
             } else if (action instanceof Move) {
                 roboController.move();
+            } else if (action instanceof Help) {
+                roboController.help();
+            } else if (action instanceof Display) {
+                roboController.displayTable();
             }
         });
     }
