@@ -1,5 +1,31 @@
 # robo-challenge
 Robot Challenge
+
+
+Robot Commands
+> place 1,2,north     	To Place a Robot at 1,2 facing North
+> left                	To change direction of Robot to the left side
+> right               	To change direction of Robot to the right side
+> move                	To move the robot in its current direction
+> report              	To display the position and direction of active robot
+> display             	To view tabletop grid with robots and their direction
+> robot 2             	To activate a specific robot by its number
+> help                	To display help
+------------------------------------------------------
+You can also use shortened commands for above mentioned commands.
+> p 1,2,north         	To Place a Robot at 1,2 facing North
+> l                   	To change direction of Robot to the left side
+> r                   	To change direction of Robot to the right side
+> m                   	To move the robot in its current direction
+> rt                  	To display the position and direction of active robot
+> d                   	To view tabletop grid with robots and their direction
+> rb 2                	To activate a specific robot by its number
+> h                   	To display help
+------------------------------------------------------
+
+
+
+
 The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.
 
 There are no other obstructions on the table surface.
